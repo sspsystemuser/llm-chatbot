@@ -1,0 +1,16 @@
+CREATE TABLE pdf_documents (
+    id SERIAL PRIMARY KEY,
+    filename VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+	upload_date TIMESTAMPTZ DEFAULT NOW(),
+	last_update_date TIMESTAMPTZ
+);
+
+
+CREATE TABLE pdf_vectors (
+    id SERIAL PRIMARY KEY,
+    pdf_id INTEGER REFERENCES pdf_documents(id) ON DELETE CASCADE,
+    vector_id TEXT NOT NULL,
+	created_date TIMESTAMPTZ DEFAULT NOW(),
+	last_update_date TIMESTAMPTZ
+);
